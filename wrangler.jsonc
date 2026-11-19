@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nishel",
+  "compatibility_date": "2026-11-20",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404"
+  }
+}
