@@ -1,0 +1,6 @@
+name = "nishel"
+compatibility_date = "2026-11-20"
+
+[assets]
+directory = "."
+binding = "ASSETS"
