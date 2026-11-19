@@ -6,11 +6,11 @@ A responsive, mobile-first single-page NISHEL introduction site.
 1. In Cloudflare, open **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
 2. Choose the GitHub repository `nishel1/nishel-website` and production branch `main`.
 3. Framework preset: **None**.
-4. Build command: leave blank.
-5. Build output directory: `/` (repository root).
+4. Build command: `exit 0` (or leave blank).
+5. Build output directory: `.` (the repository root, where `index.html` is located).
 6. Save and deploy.
 
-This repository is a static HTML site. No build step or paid service is required for the page itself.
+This repository is a static HTML site. No build step or paid service is required for the page itself. Cloudflare will provide a `pages.dev` address after deployment.
 
 ## Update
 Edit `index.html` in GitHub's mobile web interface. Commit changes; Cloudflare Pages will redeploy after the repository is connected.
