@@ -1,20 +1,35 @@
 # NISHEL Website
 
-A responsive, mobile-first single-page NISHEL introduction site.
+A responsive, mobile-first single-page NISHEL introduction site. The site is plain HTML and CSS; it does not need a framework or application build.
 
-## Deploy with Cloudflare Pages (Git integration)
-1. In Cloudflare, open **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
-2. Choose the GitHub repository `nishel1/nishel-website` and production branch `main`.
-3. Framework preset: **None**.
-4. Build command: `exit 0` (or leave blank).
-5. Build output directory: `.` (the repository root, where `index.html` is located).
-6. Save and deploy.
+## Option A — Cloudflare Workers (Wrangler)
 
-This repository is a static HTML site. No build step or paid service is required for the page itself. Cloudflare will provide a `pages.dev` address after deployment.
+This repository now includes `wrangler.jsonc` for an assets-only Cloudflare Worker.
 
-## Update
-Edit `index.html` in GitHub's mobile web interface. Commit changes; Cloudflare Pages will redeploy after the repository is connected.
+In Cloudflare Workers & Pages, connect the GitHub repository `nishel1/nishel-website`, branch `main`, with the repository root as the root directory. Set the deploy/build command to:
+
+```sh
+npx wrangler@latest deploy
+```
+
+No separate build output directory is needed for the Workers deployment. Wrangler reads `wrangler.jsonc` and publishes the static files as Worker assets. The Worker name is `nishel`.
+
+## Option B — Cloudflare Pages
+
+If creating a Pages project instead, use:
+- Framework preset: **None**
+- Build command: `exit 0` (or leave blank)
+- Build output directory: `.`
+- Production branch: `main`
+
+Cloudflare will provide a `pages.dev` address after deployment.
+
+## Updating the site
+
+Edit `index.html` in GitHub and commit the change. Cloudflare will redeploy automatically once Git integration is configured.
 
 ## Important
+
 - The community-support offer is subject to eligibility and final terms agreed with NISHEL.
+- One page means one single-page website for one specific business, service or type of work.
 - This page does not claim that unfinished AI, booking, payment, account or automation features are live.
