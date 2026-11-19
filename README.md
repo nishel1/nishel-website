@@ -1,35 +1,30 @@
 # NISHEL Website
 
-A responsive, mobile-first single-page NISHEL introduction site. The site is plain HTML and CSS; it does not need a framework or application build.
+Mobile-first NISHEL introduction and enquiry website. Built with plain HTML, CSS and a small amount of browser JavaScript. No framework, build step, AI API, database or paid token service is required for the website itself.
 
-## Option A — Cloudflare Workers (Wrangler)
+## Cloudflare Workers deployment
 
-This repository now includes `wrangler.jsonc` for an assets-only Cloudflare Worker.
-
-In Cloudflare Workers & Pages, connect the GitHub repository `nishel1/nishel-website`, branch `main`, with the repository root as the root directory. Set the deploy/build command to:
-
-```sh
-npx wrangler@latest deploy
-```
-
-No separate build output directory is needed for the Workers deployment. Wrangler reads `wrangler.jsonc` and publishes the static files as Worker assets. The Worker name is `nishel`.
-
-## Option B — Cloudflare Pages
-
-If creating a Pages project instead, use:
-- Framework preset: **None**
-- Build command: `exit 0` (or leave blank)
-- Build output directory: `.`
+- Repository: `nishel1/nishel-website`
 - Production branch: `main`
+- Root directory: `/`
+- Build command: none
+- Deploy command: `npx wrangler@latest deploy`
+- Worker name: `nishel`
 
-Cloudflare will provide a `pages.dev` address after deployment.
+The `wrangler.jsonc` file configures static assets from the repository root. The homepage is `index.html`.
 
-## Updating the site
+## Website features
 
-Edit `index.html` in GitHub and commit the change. Cloudflare will redeploy automatically once Git integration is configured.
+- Responsive NISHEL introduction and service sections
+- Startup, small-business, creator and local-worker support descriptions
+- Community initiative explanation with eligibility and scope caveats
+- Three prior project showcase links
+- FAQ explaining what is and is not included
+- Contact links and enquiry form that prepares a WhatsApp message
+- No server-side lead storage; the visitor sends the prepared message themselves
 
-## Important
+## Important limitations
 
-- The community-support offer is subject to eligibility and final terms agreed with NISHEL.
-- One page means one single-page website for one specific business, service or type of work.
-- This page does not claim that unfinished AI, booking, payment, account or automation features are live.
+- This static site does not provide unlimited AI generation, automated lead collection, CRM, user accounts, payments, scheduling or background automation.
+- Hosting, custom domains, maintenance, eligibility and the exact scope of free-page support must be agreed with NISHEL before work begins.
+- Project showcase links are examples, not claims of partnership, endorsement or customer testimonials.
