@@ -11,6 +11,11 @@ async function authorized(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === "/google819bd25ec5f551d2.html" && request.method === "GET") {
+      return new Response("google-site-verification: google819bd25ec5f551d2.html", {
+        headers: { "content-type": "text/html; charset=utf-8", "cache-control": "public, max-age=3600" }
+      });
+    }
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(request);
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: { "allow": "GET, POST, PATCH, OPTIONS" } });
     if (!env.DB) return json({ error: "Lead storage is not connected yet. Please use WhatsApp for now." }, 503);
