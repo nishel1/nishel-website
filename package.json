@@ -1,0 +1,12 @@
+{
+  "name": "nishel-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "NISHEL static website deployed on Cloudflare Workers",
+  "scripts": {
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "latest"
+  }
+}
