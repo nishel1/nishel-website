@@ -1,30 +1,31 @@
 # NISHEL Website
 
-Mobile-first NISHEL introduction and enquiry website. Built with plain HTML, CSS and a small amount of browser JavaScript. No framework, build step, AI API, database or paid token service is required for the website itself.
+Mobile-first static website with a lightweight Cloudflare Worker backend. No paid AI API, AI tokens, framework build, or external paid CRM is required.
 
-## Cloudflare Workers deployment
+## What is in this repository
+- `index.html`: public NISHEL website and customer enquiry form.
+- `worker.js`: small API for lead submissions and private admin access.
+- `schema.sql`: D1 table and indexes.
+- `admin.html`: private lead desk at `/admin.html`.
+- `wrangler.jsonc`: Worker + static assets configuration.
 
-- Repository: `nishel1/nishel-website`
-- Production branch: `main`
-- Root directory: `/`
-- Build command: none
-- Deploy command: `npx wrangler@latest deploy`
-- Worker name: `nishel`
+## Current lead system
+The public form posts to `/api/leads`. When D1 is connected, the Worker stores the name, phone, optional email, enquiry type, message and submission time. If the backend is not connected or unavailable, the form falls back to preparing a WhatsApp message to NISHEL.
 
-The `wrangler.jsonc` file configures static assets from the repository root. The homepage is `index.html`.
+The admin page lists the latest 300 enquiries and lets the admin change status (New, Contacted, In Progress, Converted, Closed). Admin access uses the `ADMIN_PASSWORD` Worker secret. Never put this password in website code or share it with customers.
 
-## Website features
+## One-time Cloudflare setup still required for database storage
+1. In Cloudflare Dashboard, open **Workers & Pages → D1 SQL Database → Create database**. Name it `nishel-leads`.
+2. Open the new database's **Console** and execute the complete contents of `schema.sql` from this repository.
+3. Open the `nishel-website` Worker → **Settings → Bindings → Add → D1 database**. Set variable name/binding to `DB` and select `nishel-leads`. Save and deploy.
+4. Open Worker **Settings → Variables and Secrets → Add**. Add secret named `ADMIN_PASSWORD` with a strong unique password. Save and deploy.
+5. Visit `https://nishel-website.nisel-lifeline.workers.dev/admin.html` and sign in with that password.
 
-- Responsive NISHEL introduction and service sections
-- Startup, small-business, creator and local-worker support descriptions
-- Community initiative explanation with eligibility and scope caveats
-- Three prior project showcase links
-- FAQ explaining what is and is not included
-- Contact links and enquiry form that prepares a WhatsApp message
-- No server-side lead storage; the visitor sends the prepared message themselves
+The Worker already has a static asset binding named `ASSETS`. D1 storage and admin access will not work until the D1 binding and password secret are configured.
 
-## Important limitations
-
-- This static site does not provide unlimited AI generation, automated lead collection, CRM, user accounts, payments, scheduling or background automation.
-- Hosting, custom domains, maintenance, eligibility and the exact scope of free-page support must be agreed with NISHEL before work begins.
-- Project showcase links are examples, not claims of partnership, endorsement or customer testimonials.
+## Privacy and limits
+- Collect only information needed to respond to an enquiry. Tell customers how their details are used and provide a way to contact NISHEL for correction/deletion.
+- Keep the admin password private; use a strong unique password.
+- This is a simple lead inbox, not a full CRM, marketing automation, AI agent, or guaranteed follow-up system.
+- No paid AI API is used. Cloudflare free-plan quotas and limits apply and can change.
+- Confirm hosting, domain, maintenance and free-page eligibility terms with each participant.
